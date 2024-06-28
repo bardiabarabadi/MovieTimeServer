@@ -47,17 +47,29 @@ const ButtonToggle = styled(Button)`
 `;
 
 function speakerButtonClicked() {
-  alert("You clicked speakerButtonClicked!");
-  fetch(`http://localhost:5000/button`, {
+  fetch(`http://localhost:5000/buttons`, {
     'method': 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ "data": "World!" })
+    body: JSON.stringify({ "data": "Speaker" })
   }).then(res => res.json())
-  .then(function(data) {
-    console.log(data);
-   })
+    .then(function (data) {
+      console.log(data);
+    })
+}
+
+function projectorButtonClicked() {
+  fetch(`http://localhost:5000/buttons`, {
+    'method': 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "data": "Projector" })
+  }).then(res => res.json())
+    .then(function (data) {
+      console.log(data);
+    })
 }
 
 function App() {
@@ -66,12 +78,19 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-
-        <div>
-          <Button onClick={speakerButtonClicked}>Toggle Speaker</Button>
+        <div className="flex-row">
+          <div>
+            <Button onClick={speakerButtonClicked}>Toggle Speaker</Button>
+          </div>
+          <div>
+            <Button onClick={projectorButtonClicked}>Toggle Projector</Button>
+          </div>
         </div>
-
       </header>
+      <body>
+
+      </body>
+
     </div>
   );
 }
